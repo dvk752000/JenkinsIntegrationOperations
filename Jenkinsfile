@@ -13,7 +13,7 @@ pipeline {
 				script{
 					//def isURLReachable = sh(script: "curl -s --retry-connrefused --retry 10 --retry-delay 5 http://192.168.0.101:8081/locations || true", returnStdout: true).trim()
 					try{
-						def response = httpRequest authentication: 'jenkinssbCredentials', url: "http://192.168.0.104:8081/${urlPath}/${primaryKey}/${updatedValue}"
+						def response = httpRequest authentication: 'jenkinssbCredentials', url: "http://192.168.0.104:8081/${urlPath}"
 					}
 					catch(exc){
 						echo "Cannot reach URL." 
