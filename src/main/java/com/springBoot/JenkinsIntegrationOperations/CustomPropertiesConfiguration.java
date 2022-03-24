@@ -80,14 +80,11 @@ public class CustomPropertiesConfiguration {
 			this.val2 = val2;
 		}
 	}
-	@Autowired
-	private Property1 property1;
+	private Property1 property1 = new Property1();
+
+	private Property2 property2 = new Property2();
 	
-	@Autowired
-	private Property2 property2;
-	
-	@Autowired
-	private Property3 property3;
+	private Property3 property3 = new Property3();
 	
 	public Property1 getProperty1() {
 		return property1;
