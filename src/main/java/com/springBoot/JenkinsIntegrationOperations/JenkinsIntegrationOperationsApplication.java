@@ -7,17 +7,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class JenkinsIntegrationOperationsApplication implements CommandLineRunner{
-
+	@Autowired
+	CustomPropertiesConfiguration customPropertiesConfiguration;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JenkinsIntegrationOperationsApplication.class, args);
 	}
 
-	@Autowired
-	private CustomPropertiesConfiguration customPropertiesConfiguration;
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println(customPropertiesConfiguration);
-		
 	}
-
 }

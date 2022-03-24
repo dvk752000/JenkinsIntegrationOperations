@@ -1,5 +1,6 @@
 package com.springBoot.JenkinsIntegrationOperations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,13 +9,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "custom")
 public class CustomPropertiesConfiguration {
-	
+
+
 	@Configuration
 	@ConfigurationProperties(prefix = "custom.property1")
 	class Property1{
-		private String val1;
-		private String val2;
-		private String val3;
+		private String val1="Default";
+		private String val2="Default";
+		private String val3="Default";
 		public String getVal1() {
 			return val1;
 		}
@@ -33,14 +35,19 @@ public class CustomPropertiesConfiguration {
 		public void setVal3(String val3) {
 			this.val3 = val3;
 		}
+		@Override
+		public String toString() {
+			return "Property1 [val1=" + val1 + ", val2=" + val2 + ", val3=" + val3 + "]";
+		}
+		
 	}
 	
 	@Configuration
 	@ConfigurationProperties(prefix = "custom.property2")
 	class Property2{
-		private int val1;
-		private int val2;
-		private int val3;
+		private int val1=0;
+		private int val2=0;
+		private int val3=0;
 		public int getVal1() {
 			return val1;
 		}
@@ -59,13 +66,17 @@ public class CustomPropertiesConfiguration {
 		public void setVal3(int val3) {
 			this.val3 = val3;
 		}
+		@Override
+		public String toString() {
+			return "Property2 [val1=" + val1 + ", val2=" + val2 + ", val3=" + val3 + "]";
+		}
 	}
 	
 	@Configuration
 	@ConfigurationProperties(prefix = "custom.property3")
 	class Property3{
-		private List<String> val1;
-		private List<Integer> val2;
+		private List<String> val1 = new ArrayList<String>();
+		private List<Integer> val2 = new ArrayList<Integer>();
 		public List<String> getVal1() {
 			return val1;
 		}
@@ -78,6 +89,11 @@ public class CustomPropertiesConfiguration {
 		public void setVal2(List<Integer> val2) {
 			this.val2 = val2;
 		}
+		@Override
+		public String toString() {
+			return "Property3 [val1=" + val1 + ", val2=" + val2 + "]";
+		}
+		
 	}
 	private Property1 property1 = new Property1();
 
@@ -107,9 +123,11 @@ public class CustomPropertiesConfiguration {
 	
 	@Override
 	public String toString() {
-		return "CustomPropertiesConfiguration [property1=" + property1 + ", property2=" + property2 + ", property3="
+		return "CustomPropertiesConfiguration [\nproperty1=" + property1 + ", \nproperty2=" + property2 + ", \nproperty3="
 				+ property3 + "]";
 	}
 	
-	
+	public String temp() {
+		return property1.toString();
+	}
 }
