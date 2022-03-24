@@ -120,7 +120,6 @@ public class CustomPropertiesConfiguration {
 		this.property3 = property3;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "CustomPropertiesConfiguration [\nproperty1=" + property1 + ", \nproperty2=" + property2 + ", \nproperty3="
