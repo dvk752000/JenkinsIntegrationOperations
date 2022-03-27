@@ -1,12 +1,18 @@
+buildscript {
+    dependencies {
+        //classpath("com.springboot:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
 plugins {
-	id 'org.springframework.boot' version '2.6.4'
+	id 'org.springframework.boot' version "${springBootVersion}"
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id "com.zoltu.git-versioning" version "3.0.3"
+	//id "com.zoltu.git-versioning" version "3.0.3"
 }
 
 group = 'com.springBoot'
-//version = '1.0.0'
+version = "${majorVer}.${minorVer}.${buildVer}"
 sourceCompatibility = '11'
 
 repositories {
@@ -16,7 +22,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	//implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

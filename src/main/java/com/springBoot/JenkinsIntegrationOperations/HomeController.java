@@ -1,18 +1,26 @@
 package com.springBoot.JenkinsIntegrationOperations;
 
-//@RestController
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class HomeController {
-	/*@Autowired
 	//CustomPropertiesConfiguration customPropertiesConfiguration;
 	
+	@Autowired
+	CustomHealthCheck customHealthCheck;
 	
-	@Value("${custom.property1.val1:Default Text}")
-	private String val1;
 	
-    @GetMapping("")
+    @GetMapping("/")
     public String sendGreeting(){
-    	System.out.println(val1);
-        return "Value of " + customPropertiesConfiguration;
+    	//System.out.println(val1);
+        return "Home Page";
     }
-    */
+	
+	@GetMapping("/health")
+	public Health checkHealth() {
+		return customHealthCheck.health();
+	}
 }
