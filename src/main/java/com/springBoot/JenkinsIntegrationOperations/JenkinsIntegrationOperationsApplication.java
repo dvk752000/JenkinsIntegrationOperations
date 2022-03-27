@@ -12,10 +12,6 @@ public class JenkinsIntegrationOperationsApplication implements CommandLineRunne
 	@Autowired
 	CustomPropertiesConfiguration customPropertiesConfiguration;
 	
-	@Autowired
-	CustomJenkinsConfiguration customJenkinsConfiguration;
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(JenkinsIntegrationOperationsApplication.class, args);
 	}
