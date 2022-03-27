@@ -1,14 +1,55 @@
-plugins {
-	id 'org.springframework.boot' version "${springBootVersion}"
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	//id "com.zoltu.git-versioning" version "3.0.3"
+class ApplicationVersion {
+   Integer major
+   Integer minor
+   Integer patch
+   Boolean release
+
+   ApplicationVersion(Integer major, Integer minor, Integer patch, Boolean release) {
+      this.major = major
+      this.minor = minor
+      this.patch = patch
+      this.release = release
+   }
+
+
+   String getVersion() {
+      return "$major.$minor.$patch"
+   }
 }
 
-group = 'com.springBoot'
-version = "${majorVer}.${minorVer}.${buildVer}"
-sourceCompatibility = '11'
+plugins {
+	id 'org.springframework.boot' version '2.4.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
 
+
+ext.loadVersion = { ->
+
+   def versionPropertiesFile = file('build.properties')
+
+   if(!versionPropertiesFile.exists()) {
+      throw new Exception('No build.properties file found')
+   }
+
+   Properties versionProperties = new Properties()
+
+   versionPropertiesFile.withInputStream { stream ->
+      versionProperties.load(stream)
+   }
+   return new ApplicationVersion(versionProperties.major.toInteger(),
+                           versionProperties.minor.toInteger(),
+                           versionProperties.patch.toInteger(),
+                           versionProperties.release.toBoolean())
+
+}
+
+
+
+group = 'com.springBoot'
+sourceCompatibility = '11'
+version = loadVersion().getVersion()
+//version = "${major}.${minor}.${patch}"
 repositories {
 	mavenCentral()
 }
