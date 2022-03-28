@@ -47,8 +47,6 @@ public class CustomHealthCheck implements HealthIndicator {
     	catch(Exception e) {
     		System.out.println("Exception Occured: " + e);
     	}
-
     	return 0;
     }
-
 }
